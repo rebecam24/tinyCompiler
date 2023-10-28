@@ -8,11 +8,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="especificaciones" level="project" />
-    <orderEntry type="library" name="especificacion" level="project" />
-    <orderEntry type="library" name="especificacion1" level="project" />
     <orderEntry type="library" name="especificacion2" level="project" />
     <orderEntry type="library" name="especificacion3" level="project" />
     <orderEntry type="library" name="software" level="project" />
     <orderEntry type="library" name="especificacion4" level="project" />
+    <orderEntry type="library" name="java-cup-11b-runtime1" level="project" />
+    <orderEntry type="library" name="java-cup-11b" level="project" />
+    <orderEntry type="library" name="jflex-full-1.8.2" level="project" />
   </component>
 </module>
