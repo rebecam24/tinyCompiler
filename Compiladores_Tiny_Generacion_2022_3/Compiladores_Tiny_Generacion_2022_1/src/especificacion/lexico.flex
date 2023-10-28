@@ -26,11 +26,11 @@ import java.io.Reader;
 /******************************************************************
 BORRAR SI NO SE NECESITA
 	//TODO: Cambiar la SF por esto o ver que se hace
-	//Crear un nuevo objeto java_cup.runtime.Symbol con información sobre el token actual sin valor
+	//Crear un nuevo objeto java_cup.runtime.Symbol con informaciï¿½n sobre el token actual sin valor
  	  private Symbol symbol(int type){
     		return new Symbol(type,yyline,yycolumn);
 	  }
-	//Crear un nuevo objeto java_cup.runtime.Symbol con información sobre el token actual con valor
+	//Crear un nuevo objeto java_cup.runtime.Symbol con informaciï¿½n sobre el token actual con valor
 	  private Symbol symbol(int type,Object value){
     		return new Symbol(type,yyline,yycolumn,value);
 	  }
@@ -107,6 +107,24 @@ espacio		= [ \t]+
 ";"             {	if(debug) System.out.println("token SEMI");
 			return sf.newSymbol("SEMI",sym.SEMI);
 			}
+/* Nuevos operadores logicos >, >=, <=, and, or*/
+
+">"             {	if(debug) System.out.println("token GT");
+			return sf.newSymbol("GT",sym.GT);
+			}
+">="             {	if(debug) System.out.println("token GE");
+			return sf.newSymbol("GE",sym.GE);
+			}
+"<="             {	if(debug) System.out.println("token LE");
+			return sf.newSymbol("LE",sym.LE);
+			}
+"and"             {	if(debug) System.out.println("token AND");
+			return sf.newSymbol("AND",sym.AND);
+			}
+"or"             {	if(debug) System.out.println("token OR");
+			return sf.newSymbol("OR",sym.OR);
+			}
+/* Fin */
 {numero}        {	if(debug) System.out.println("token NUM");
 			return sf.newSymbol("NUM",sym.NUM,new String(yytext()));
 			}
