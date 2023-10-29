@@ -8,7 +8,6 @@ import java_cup.runtime.*;
 import java.io.Reader;
 //import otros.*;
 
-
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
 class Lexico implements java_cup.runtime.Scanner {
@@ -25,70 +24,72 @@ class Lexico implements java_cup.runtime.Scanner {
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
    * ZZ_LEXSTATE[l+1] is the state in the DFA for the lexical state l
-   *                  at the beginning of a line
+   * at the beginning of a line
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0, 0
+      0, 0
   };
 
   /**
    * Top-level table for translating characters to character classes
    */
-  private static final int [] ZZ_CMAP_TOP = zzUnpackcmap_top();
+  private static final int[] ZZ_CMAP_TOP = zzUnpackcmap_top();
 
-  private static final String ZZ_CMAP_TOP_PACKED_0 =
-    "\1\0\37\u0100\1\u0200\267\u0100\10\u0300\u1020\u0100";
+  private static final String ZZ_CMAP_TOP_PACKED_0 = "\1\0\37\u0100\1\u0200\267\u0100\10\u0300\u1020\u0100";
 
-  private static int [] zzUnpackcmap_top() {
-    int [] result = new int[4352];
+  private static int[] zzUnpackcmap_top() {
+    int[] result = new int[4352];
     int offset = 0;
     offset = zzUnpackcmap_top(ZZ_CMAP_TOP_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackcmap_top(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackcmap_top(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int count = packed.charAt(i++);
       int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
+      do
+        result[j++] = value;
+      while (--count > 0);
     }
     return j;
   }
 
-
   /**
    * Second-level tables for translating characters to character classes
    */
-  private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
+  private static final int[] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
-  private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\2\3\1\4\22\0\1\1\7\0"+
-    "\1\5\1\6\1\7\1\10\1\0\1\11\1\0\1\12"+
-    "\12\13\1\14\1\15\1\16\1\17\1\20\2\0\32\21"+
-    "\6\0\1\22\2\21\1\23\1\24\1\25\1\21\1\26"+
-    "\1\27\2\21\1\30\1\21\1\31\1\32\1\33\1\21"+
-    "\1\34\1\35\1\36\1\37\1\21\1\40\3\21\1\41"+
-    "\1\0\1\42\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
+  private static final String ZZ_CMAP_BLOCKS_PACKED_0 = "\11\0\1\1\1\2\2\3\1\4\22\0\1\1\7\0" +
+      "\1\5\1\6\1\7\1\10\1\0\1\11\1\0\1\12" +
+      "\12\13\1\14\1\15\1\16\1\17\3\0\32\20\1\21" +
+      "\1\0\1\22\3\0\1\23\1\20\1\24\1\25\1\26" +
+      "\1\27\1\20\1\30\1\31\2\20\1\32\1\20\1\33" +
+      "\1\34\1\35\1\20\1\36\1\37\1\40\1\41\1\42" +
+      "\1\43\3\20\1\44\1\0\1\45\7\0\1\3\u01a2\0" +
+      "\2\3\326\0\u0100\3";
 
-  private static int [] zzUnpackcmap_blocks() {
-    int [] result = new int[1024];
+  private static int[] zzUnpackcmap_blocks() {
+    int[] result = new int[1024];
     int offset = 0;
     offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackcmap_blocks(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackcmap_blocks(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int count = packed.charAt(i++);
       int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
+      do
+        result[j++] = value;
+      while (--count > 0);
     }
     return j;
   }
@@ -96,61 +97,60 @@ class Lexico implements java_cup.runtime.Scanner {
   /**
    * Translates DFA states to action switch labels.
    */
-  private static final int [] ZZ_ACTION = zzUnpackAction();
+  private static final int[] ZZ_ACTION = zzUnpackAction();
 
-  private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\0\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\1\1\13\1\14\1\15"+
-    "\1\16\11\17\1\1\1\3\1\20\1\21\1\22\3\17"+
-    "\1\23\1\24\4\17\1\0\1\25\1\17\1\26\5\17"+
-    "\1\27\1\30\1\31\1\17\1\32\3\17\1\33\1\34"+
-    "\1\35";
+  private static final String ZZ_ACTION_PACKED_0 = "\1\0\1\1\1\2\1\3\1\0\1\4\1\5\1\6" +
+      "\1\7\1\10\1\11\1\12\1\1\1\13\1\14\1\15" +
+      "\1\16\1\17\1\20\7\16\1\1\1\3\1\21\2\16" +
+      "\1\22\5\16\1\0\1\16\1\23\6\16\1\24\1\25" +
+      "\1\26\1\16\1\27\4\16\1\30\1\16\1\31\1\32" +
+      "\1\33";
 
-  private static int [] zzUnpackAction() {
-    int [] result = new int[60];
+  private static int[] zzUnpackAction() {
+    int[] result = new int[60];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackAction(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackAction(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int count = packed.charAt(i++);
       int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
+      do
+        result[j++] = value;
+      while (--count > 0);
     }
     return j;
   }
 
-
   /**
    * Translates a state to a row index in the transition table
    */
-  private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
+  private static final int[] ZZ_ROWMAP = zzUnpackRowMap();
 
-  private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\43\0\106\0\151\0\214\0\43\0\43\0\43"+
-    "\0\43\0\43\0\43\0\257\0\322\0\43\0\365\0\43"+
-    "\0\u0118\0\u013b\0\u015e\0\u0181\0\u01a4\0\u01c7\0\u01ea\0\u020d"+
-    "\0\u0230\0\u0253\0\u0276\0\43\0\43\0\43\0\43\0\u0299"+
-    "\0\u02bc\0\u02df\0\u013b\0\u013b\0\u0302\0\u0325\0\u0348\0\u036b"+
-    "\0\u038e\0\u013b\0\u03b1\0\u013b\0\u03d4\0\u03f7\0\u041a\0\u043d"+
-    "\0\u0460\0\43\0\u013b\0\u013b\0\u0483\0\u013b\0\u04a6\0\u04c9"+
-    "\0\u04ec\0\u013b\0\u013b\0\u013b";
+  private static final String ZZ_ROWMAP_PACKED_0 = "\0\0\0\46\0\114\0\162\0\230\0\46\0\46\0\46" +
+      "\0\46\0\46\0\46\0\276\0\344\0\46\0\46\0\46" +
+      "\0\u010a\0\46\0\46\0\u0130\0\u0156\0\u017c\0\u01a2\0\u01c8" +
+      "\0\u01ee\0\u0214\0\u023a\0\46\0\46\0\u0260\0\u0286\0\u010a" +
+      "\0\u02ac\0\u02d2\0\u02f8\0\u031e\0\u0344\0\u036a\0\u0390\0\u010a" +
+      "\0\u03b6\0\u03dc\0\u0402\0\u0428\0\u044e\0\u0474\0\46\0\u010a" +
+      "\0\u010a\0\u049a\0\u010a\0\u04c0\0\u04e6\0\u050c\0\u0532\0\u010a" +
+      "\0\u0558\0\u010a\0\u010a\0\u010a";
 
-  private static int [] zzUnpackRowMap() {
-    int [] result = new int[60];
+  private static int[] zzUnpackRowMap() {
+    int[] result = new int[60];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackRowMap(String packed, int offset, int [] result) {
-    int i = 0;  /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackRowMap(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int high = packed.charAt(i++) << 16;
@@ -162,50 +162,57 @@ class Lexico implements java_cup.runtime.Scanner {
   /**
    * The transition table of the DFA
    */
-  private static final int [] ZZ_TRANS = zzUnpackTrans();
+  private static final int[] ZZ_TRANS = zzUnpackTrans();
 
-  private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\0\1\5\1\6\1\7\1\10"+
-    "\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20"+
-    "\1\21\1\22\1\23\1\22\1\24\2\22\1\25\2\22"+
-    "\1\26\1\22\1\27\1\22\1\30\1\31\1\32\1\33"+
-    "\1\2\44\0\1\3\45\0\1\34\40\0\1\34\53\0"+
-    "\1\14\46\0\1\35\42\0\1\36\42\0\1\37\44\0"+
-    "\20\22\23\0\10\22\1\40\7\22\23\0\7\22\1\41"+
-    "\1\42\7\22\23\0\4\22\1\43\13\22\23\0\13\22"+
-    "\1\44\4\22\23\0\3\22\1\45\14\22\23\0\5\22"+
-    "\1\46\12\22\23\0\10\22\1\47\7\22\23\0\13\22"+
-    "\1\50\4\22\2\0\42\51\22\0\2\22\1\52\15\22"+
-    "\23\0\14\22\1\53\3\22\23\0\2\22\1\54\15\22"+
-    "\23\0\1\22\1\55\10\22\1\56\5\22\23\0\3\22"+
-    "\1\57\14\22\23\0\15\22\1\60\2\22\23\0\6\22"+
-    "\1\61\11\22\2\0\42\51\1\62\21\0\3\22\1\63"+
-    "\14\22\23\0\2\22\1\64\15\22\23\0\3\22\1\65"+
-    "\14\22\23\0\10\22\1\66\7\22\23\0\6\22\1\67"+
-    "\11\22\23\0\15\22\1\70\2\22\23\0\1\22\1\71"+
-    "\16\22\23\0\7\22\1\72\10\22\23\0\3\22\1\73"+
-    "\14\22\23\0\15\22\1\74\2\22\2\0";
+  private static final String ZZ_TRANS_PACKED_0 = "\1\2\1\3\1\4\1\0\1\5\1\6\1\7\1\10" +
+      "\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20" +
+      "\1\21\1\22\1\23\3\21\1\24\2\21\1\25\4\21" +
+      "\1\26\1\21\1\27\1\30\1\31\1\32\1\33\1\2" +
+      "\47\0\1\3\50\0\1\34\43\0\1\34\56\0\1\14" +
+      "\51\0\1\35\46\0\1\21\2\0\21\21\22\0\1\21" +
+      "\2\0\7\21\1\36\1\37\10\21\22\0\1\21\2\0" +
+      "\4\21\1\40\14\21\22\0\1\21\2\0\3\21\1\41" +
+      "\15\21\22\0\1\21\2\0\5\21\1\42\13\21\22\0" +
+      "\1\21\2\0\10\21\1\43\10\21\22\0\1\21\2\0" +
+      "\3\21\1\44\15\21\22\0\1\21\2\0\13\21\1\45" +
+      "\5\21\2\0\45\46\21\0\1\21\2\0\14\21\1\47" +
+      "\4\21\22\0\1\21\2\0\2\21\1\50\16\21\22\0" +
+      "\1\21\2\0\1\51\11\21\1\52\6\21\22\0\1\21" +
+      "\2\0\3\21\1\53\15\21\22\0\1\21\2\0\15\21" +
+      "\1\54\3\21\22\0\1\21\2\0\1\21\1\55\17\21" +
+      "\22\0\1\21\2\0\6\21\1\56\12\21\2\0\45\46" +
+      "\1\57\20\0\1\21\2\0\3\21\1\60\15\21\22\0" +
+      "\1\21\2\0\2\21\1\61\16\21\22\0\1\21\2\0" +
+      "\3\21\1\62\15\21\22\0\1\21\2\0\10\21\1\63" +
+      "\10\21\22\0\1\21\2\0\6\21\1\64\12\21\22\0" +
+      "\1\21\2\0\15\21\1\65\3\21\22\0\1\21\2\0" +
+      "\15\21\1\66\3\21\22\0\1\21\2\0\1\67\20\21" +
+      "\22\0\1\21\2\0\7\21\1\70\11\21\22\0\1\21" +
+      "\2\0\11\21\1\71\7\21\22\0\1\21\2\0\3\21" +
+      "\1\72\15\21\22\0\1\21\2\0\15\21\1\73\3\21" +
+      "\22\0\1\21\2\0\13\21\1\74\5\21\2\0";
 
-  private static int [] zzUnpackTrans() {
-    int [] result = new int[1295];
+  private static int[] zzUnpackTrans() {
+    int[] result = new int[1406];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackTrans(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackTrans(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int count = packed.charAt(i++);
       int value = packed.charAt(i++);
       value--;
-      do result[j++] = value; while (--count > 0);
+      do
+        result[j++] = value;
+      while (--count > 0);
     }
     return j;
   }
-
 
   /** Error code for "Unknown internal scanner error". */
   private static final int ZZ_UNKNOWN_ERROR = 0;
@@ -219,35 +226,36 @@ class Lexico implements java_cup.runtime.Scanner {
    * {@link #ZZ_PUSHBACK_2BIG} respectively.
    */
   private static final String ZZ_ERROR_MSG[] = {
-    "Unknown internal scanner error",
-    "Error: could not match input",
-    "Error: pushback value was too large"
+      "Unknown internal scanner error",
+      "Error: could not match input",
+      "Error: pushback value was too large"
   };
 
   /**
    * ZZ_ATTRIBUTE[aState] contains the attributes of state {@code aState}
    */
-  private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
+  private static final int[] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
-  private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\1\0\6\11\2\1\1\11\1\1"+
-    "\1\11\13\1\4\11\11\1\1\0\10\1\1\11\12\1";
+  private static final String ZZ_ATTRIBUTE_PACKED_0 = "\1\0\1\11\2\1\1\0\6\11\2\1\3\11\1\1" +
+      "\2\11\10\1\2\11\10\1\1\0\10\1\1\11\15\1";
 
-  private static int [] zzUnpackAttribute() {
-    int [] result = new int[60];
+  private static int[] zzUnpackAttribute() {
+    int[] result = new int[60];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
   }
 
-  private static int zzUnpackAttribute(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
+  private static int zzUnpackAttribute(String packed, int offset, int[] result) {
+    int i = 0; /* index in packed string */
+    int j = offset; /* index in unpacked array */
     int l = packed.length();
     while (i < l) {
       int count = packed.charAt(i++);
       int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
+      do
+        result[j++] = value;
+      while (--count > 0);
     }
     return j;
   }
@@ -262,7 +270,8 @@ class Lexico implements java_cup.runtime.Scanner {
   private int zzLexicalState = YYINITIAL;
 
   /**
-   * This buffer contains the current text to be matched and is the source of the {@link #yytext()}
+   * This buffer contains the current text to be matched and is the source of the
+   * {@link #yytext()}
    * string.
    */
   private char zzBuffer[] = new char[ZZ_BUFFERSIZE];
@@ -281,22 +290,29 @@ class Lexico implements java_cup.runtime.Scanner {
 
   /**
    * Whether the scanner is at the end of file.
+   * 
    * @see #yyatEOF
    */
   private boolean zzAtEOF;
 
   /**
-   * The number of occupied positions in {@link #zzBuffer} beyond {@link #zzEndRead}.
+   * The number of occupied positions in {@link #zzBuffer} beyond
+   * {@link #zzEndRead}.
    *
-   * <p>When a lead/high surrogate has been read from the input stream into the final
-   * {@link #zzBuffer} position, this will have a value of 1; otherwise, it will have a value of 0.
+   * <p>
+   * When a lead/high surrogate has been read from the input stream into the final
+   * {@link #zzBuffer} position, this will have a value of 1; otherwise, it will
+   * have a value of 0.
    */
   private int zzFinalHighSurrogate = 0;
 
   /** Number of newlines encountered up to the start of the matched text. */
   private int yyline;
 
-  /** Number of characters from the last newline up to the start of the matched text. */
+  /**
+   * Number of characters from the last newline up to the start of the matched
+   * text.
+   */
   private int yycolumn;
 
   /** Number of characters up to the start of the matched text. */
@@ -311,35 +327,36 @@ class Lexico implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-	public Lexico(Reader r, SymbolFactory sf){
-        this(r);
-		this.sf=sf;
-		lineanum=0;
-		debug=true;
-	}
-	private SymbolFactory sf;
-	private int lineanum;
-	private boolean debug;
+  public Lexico(Reader r, SymbolFactory sf) {
+    this(r);
+    this.sf = sf;
+    lineanum = 0;
+    debug = true;
+  }
 
+  private SymbolFactory sf;
+  private int lineanum;
+  private boolean debug;
 
-/******************************************************************
-BORRAR SI NO SE NECESITA
-	//TODO: Cambiar la SF por esto o ver que se hace
-	//Crear un nuevo objeto java_cup.runtime.Symbol con informaci�n sobre el token actual sin valor
- 	  private Symbol symbol(int type){
-    		return new Symbol(type,yyline,yycolumn);
-	  }
-	//Crear un nuevo objeto java_cup.runtime.Symbol con informaci�n sobre el token actual con valor
-	  private Symbol symbol(int type,Object value){
-    		return new Symbol(type,yyline,yycolumn,value);
-	  }
-******************************************************************/
-
+  /******************************************************************
+   * BORRAR SI NO SE NECESITA
+   * //TODO: Cambiar la SF por esto o ver que se hace
+   * //Crear un nuevo objeto java_cup.runtime.Symbol con informaci�n sobre el
+   * token actual sin valor
+   * private Symbol symbol(int type){
+   * return new Symbol(type,yyline,yycolumn);
+   * }
+   * //Crear un nuevo objeto java_cup.runtime.Symbol con informaci�n sobre el
+   * token actual con valor
+   * private Symbol symbol(int type,Object value){
+   * return new Symbol(type,yyline,yycolumn,value);
+   * }
+   ******************************************************************/
 
   /**
    * Creates a new scanner
    *
-   * @param   in  the java.io.Reader to read input from.
+   * @param in the java.io.Reader to read input from.
    */
   Lexico(java.io.Reader in) {
     this.zzReader = in;
@@ -357,7 +374,7 @@ BORRAR SI NO SE NECESITA
    * Refills the input buffer.
    *
    * @return {@code false} iff there was new input.
-   * @exception java.io.IOException  if any I/O-Error occurs
+   * @exception java.io.IOException if any I/O-Error occurs
    */
   private boolean zzRefill() throws java.io.IOException {
 
@@ -366,8 +383,8 @@ BORRAR SI NO SE NECESITA
       zzEndRead += zzFinalHighSurrogate;
       zzFinalHighSurrogate = 0;
       System.arraycopy(zzBuffer, zzStartRead,
-                       zzBuffer, 0,
-                       zzEndRead - zzStartRead);
+          zzBuffer, 0,
+          zzEndRead - zzStartRead);
 
       /* translate stored positions */
       zzEndRead -= zzStartRead;
@@ -401,12 +418,12 @@ BORRAR SI NO SE NECESITA
         if (numRead == requested) { // We requested too few chars to encode a full Unicode character
           --zzEndRead;
           zzFinalHighSurrogate = 1;
-        } else {                    // There is room in the buffer for at least one more char
-          int c = zzReader.read();  // Expecting to read a paired low surrogate char
+        } else { // There is room in the buffer for at least one more char
+          int c = zzReader.read(); // Expecting to read a paired low surrogate char
           if (c == -1) {
             return true;
           } else {
-            zzBuffer[zzEndRead++] = (char)c;
+            zzBuffer[zzEndRead++] = (char) c;
           }
         }
       }
@@ -417,7 +434,6 @@ BORRAR SI NO SE NECESITA
     /* numRead < 0 ==> end of stream */
     return true;
   }
-
 
   /**
    * Closes the input reader.
@@ -433,16 +449,19 @@ BORRAR SI NO SE NECESITA
     }
   }
 
-
   /**
    * Resets the scanner to read from a new input stream.
    *
-   * <p>Does not close the old reader.
+   * <p>
+   * Does not close the old reader.
    *
-   * <p>All internal variables are reset, the old input stream <b>cannot</b> be reused (internal
+   * <p>
+   * All internal variables are reset, the old input stream <b>cannot</b> be
+   * reused (internal
    * buffer is discarded and lost). Lexical state is set to {@code ZZ_INITIAL}.
    *
-   * <p>Internal scan buffer is resized down to its initial length, if it has grown.
+   * <p>
+   * Internal scan buffer is resized down to its initial length, if it has grown.
    *
    * @param reader The new input stream.
    */
@@ -460,18 +479,17 @@ BORRAR SI NO SE NECESITA
    * Resets the input position.
    */
   private final void yyResetPosition() {
-      zzAtBOL  = true;
-      zzAtEOF  = false;
-      zzCurrentPos = 0;
-      zzMarkedPos = 0;
-      zzStartRead = 0;
-      zzEndRead = 0;
-      zzFinalHighSurrogate = 0;
-      yyline = 0;
-      yycolumn = 0;
-      yychar = 0L;
+    zzAtBOL = true;
+    zzAtEOF = false;
+    zzCurrentPos = 0;
+    zzMarkedPos = 0;
+    zzStartRead = 0;
+    zzEndRead = 0;
+    zzFinalHighSurrogate = 0;
+    yyline = 0;
+    yycolumn = 0;
+    yychar = 0L;
   }
-
 
   /**
    * Returns whether the scanner has reached the end of the reader it reads from.
@@ -482,7 +500,6 @@ BORRAR SI NO SE NECESITA
     return zzAtEOF;
   }
 
-
   /**
    * Returns the current lexical state.
    *
@@ -491,7 +508,6 @@ BORRAR SI NO SE NECESITA
   public final int yystate() {
     return zzLexicalState;
   }
-
 
   /**
    * Enters a new lexical state.
@@ -502,23 +518,23 @@ BORRAR SI NO SE NECESITA
     zzLexicalState = newState;
   }
 
-
   /**
    * Returns the text matched by the current regular expression.
    *
    * @return the matched text.
    */
   public final String yytext() {
-    return new String(zzBuffer, zzStartRead, zzMarkedPos-zzStartRead);
+    return new String(zzBuffer, zzStartRead, zzMarkedPos - zzStartRead);
   }
-
 
   /**
    * Returns the character at the given position from the matched text.
    *
-   * <p>It is equivalent to {@code yytext().charAt(pos)}, but faster.
+   * <p>
+   * It is equivalent to {@code yytext().charAt(pos)}, but faster.
    *
-   * @param position the position of the character to fetch. A value from 0 to {@code yylength()-1}.
+   * @param position the position of the character to fetch. A value from 0 to
+   *                 {@code yylength()-1}.
    *
    * @return the character at {@code position}.
    */
@@ -526,28 +542,32 @@ BORRAR SI NO SE NECESITA
     return zzBuffer[zzStartRead + position];
   }
 
-
   /**
    * How many characters were matched.
    *
    * @return the length of the matched text region.
    */
   public final int yylength() {
-    return zzMarkedPos-zzStartRead;
+    return zzMarkedPos - zzStartRead;
   }
-
 
   /**
    * Reports an error that occurred while scanning.
    *
-   * <p>In a well-formed scanner (no or only correct usage of {@code yypushback(int)} and a
+   * <p>
+   * In a well-formed scanner (no or only correct usage of {@code yypushback(int)}
+   * and a
    * match-all fallback rule) this method will only be called with things that
    * "Can't Possibly Happen".
    *
-   * <p>If this method is called, something is seriously wrong (e.g. a JFlex bug producing a faulty
+   * <p>
+   * If this method is called, something is seriously wrong (e.g. a JFlex bug
+   * producing a faulty
    * scanner etc.).
    *
-   * <p>Usual syntax/scanner level error handling should be done in error fallback rules.
+   * <p>
+   * Usual syntax/scanner level error handling should be done in error fallback
+   * rules.
    *
    * @param errorCode the code of the error message to display.
    */
@@ -562,22 +582,22 @@ BORRAR SI NO SE NECESITA
     throw new Error(message);
   }
 
-
   /**
    * Pushes the specified amount of characters back into the input stream.
    *
-   * <p>They will be read again by then next call of the scanning method.
+   * <p>
+   * They will be read again by then next call of the scanning method.
    *
-   * @param number the number of characters to be read again. This number must not be greater than
-   *     {@link #yylength()}.
+   * @param number the number of characters to be read again. This number must not
+   *               be greater than
+   *               {@link #yylength()}.
    */
-  public void yypushback(int number)  {
-    if ( number > yylength() )
+  public void yypushback(int number) {
+    if (number > yylength())
       zzScanError(ZZ_PUSHBACK_2BIG);
 
     zzMarkedPos -= number;
   }
-
 
   /**
    * Contains user EOF-code, which will be executed exactly once,
@@ -589,9 +609,6 @@ BORRAR SI NO SE NECESITA
     
   yyclose();    }
   }
-
-
-
 
   /**
    * Resumes scanning until the next regular expression is matched, the end of input is encountered
@@ -746,176 +763,164 @@ BORRAR SI NO SE NECESITA
             { System.err.println("Caracter Ilegal encontrado en analisis lexico: " + yytext() + "\n");
             }
             // fall through
-          case 30: break;
+          case 28: break;
           case 2:
             { /* saltos espacios en blanco*/
             }
             // fall through
-          case 31: break;
+          case 29: break;
           case 3:
             { lineanum++;
             }
             // fall through
-          case 32: break;
+<<<<<<< HEAD
+          case 30: break;
           case 4:
             { if(debug) System.out.println("token LPAREN");
-			return sf.newSymbol("LPAREN", sym.LPAREN);
+            }
+            // fall through
+          case 31: break;
+          case 5:
+            { if(debug) System.out.println("token RPAREN");
+			return sf.newSymbol("RPAREN",sym.RPAREN);
+            }
+            // fall through
+          case 32: break;
+          case 6:
+            { if(debug) System.out.println("token TIMES");
+			return sf.newSymbol("TIMES",sym.TIMES);
             }
             // fall through
           case 33: break;
-          case 5:
-            { if(debug) System.out.println("token RPAREN");
-			return sf.newSymbol("RPAREN", sym.RPAREN);
+          case 7:
+            { if(debug) System.out.println("token PLUS");
+			return sf.newSymbol("PLUS",sym.PLUS);
             }
             // fall through
           case 34: break;
-          case 6:
-            { if(debug) System.out.println("token TIMES");
-			return sf.newSymbol("TIMES", sym.TIMES);
+          case 8:
+            { if(debug) System.out.println("token MINUS");
+			return sf.newSymbol("MINUS",sym.MINUS);
             }
             // fall through
           case 35: break;
-          case 7:
-            { if(debug) System.out.println("token PLUS");
-			return sf.newSymbol("PLUS", sym.PLUS);
+          case 9:
+            { if(debug) System.out.println("token OVER");
+			return sf.newSymbol("OVER",sym.OVER);
             }
             // fall through
           case 36: break;
-          case 8:
-            { if(debug) System.out.println("token MINUS");
-			return sf.newSymbol("MINUS", sym.MINUS);
+          case 10:
+            { if(debug) System.out.println("token NUM");
+			return sf.newSymbol("NUM",sym.NUM,new String(yytext()));
             }
             // fall through
           case 37: break;
-          case 9:
-            { if(debug) System.out.println("token OVER");
-			return sf.newSymbol("OVER", sym.OVER);
+          case 11:
+            { if(debug) System.out.println("token SEMI");
+			return sf.newSymbol("SEMI",sym.SEMI);
             }
             // fall through
           case 38: break;
-          case 10:
-            { if(debug) System.out.println("token NUM");
-			return sf.newSymbol("NUM", sym.NUM,new String(yytext()));
+          case 12:
+            { if(debug) System.out.println("token LT");
+			return sf.newSymbol("LT",sym.LT);
             }
             // fall through
           case 39: break;
-          case 11:
-            { if(debug) System.out.println("token SEMI");
-			return sf.newSymbol("SEMI", sym.SEMI);
+          case 13:
+            { if(debug) System.out.println("token EQ");
+			return sf.newSymbol("EQ",sym.EQ);
             }
             // fall through
           case 40: break;
-          case 12:
-            { if(debug) System.out.println("token LT");
-			return sf.newSymbol("LT", sym.LT);
+          case 14:
+            { if(debug) System.out.println("token ID");
+				return sf.newSymbol("ID",sym.ID,new String(yytext()));
             }
             // fall through
           case 41: break;
-          case 13:
-            { if(debug) System.out.println("token EQ");
-			return sf.newSymbol("EQ", sym.EQ);
+          case 15:
+            { if(debug) System.out.println("token LBRACKET");
+            return sf.newSymbol("LBRACKET",sym.LBRACKET);
             }
             // fall through
           case 42: break;
-          case 14:
-            { if(debug) System.out.println("token GT");
-			return sf.newSymbol("GT", sym.GT);
+          case 16:
+            { if(debug) System.out.println("token RBRACKET");
+            return sf.newSymbol("RBRACKET",sym.RBRACKET);
             }
             // fall through
           case 43: break;
-          case 15:
-            { if(debug) System.out.println("token ID");
-				return sf.newSymbol("ID", sym.ID,new String(yytext()));
+          case 17:
+            { if(debug) System.out.println("token ASSIGN");
+			return sf.newSymbol("ASSIGN",sym.ASSIGN);
             }
             // fall through
           case 44: break;
-          case 16:
-            { if(debug) System.out.println("token ASSIGN");
-			return sf.newSymbol("ASSIGN", sym.ASSIGN);
+          case 18:
+            { if(debug) System.out.println("token IF");
+			return sf.newSymbol("IF",sym.IF);
             }
             // fall through
           case 45: break;
-          case 17:
-            { if(debug) System.out.println("token LE");
-			return sf.newSymbol("LE", sym.LE);
+          case 19:
+            { if(debug) System.out.println("token END");
+			return sf.newSymbol("END",sym.END);
             }
             // fall through
           case 46: break;
-          case 18:
-            { if(debug) System.out.println("token GE");
-			return sf.newSymbol("GE", sym.GE);
-            }
-            // fall through
-          case 47: break;
-          case 19:
-            { if(debug) System.out.println("token IF");
-			return sf.newSymbol("IF", sym.IF);
-            }
-            // fall through
-          case 48: break;
           case 20:
-            { if(debug) System.out.println("token OR");
-			return sf.newSymbol("OR", sym.OR);
-            }
-            // fall through
-          case 49: break;
-          case 21:
-            { if(debug) System.out.println("token AND");
-			return sf.newSymbol("AND", sym.AND);
-            }
-            // fall through
-          case 50: break;
-          case 22:
-            { if(debug) System.out.println("token END");
-			return sf.newSymbol("END", sym.END);
-            }
-            // fall through
-          case 51: break;
-          case 23:
             { /* salto comentarios */ if(debug) System.out.println("token COMENTARIO");
             }
             // fall through
-          case 52: break;
-          case 24:
+          case 47: break;
+          case 21:
             { if(debug) System.out.println("token ELSE");
-			return sf.newSymbol("ELSE", sym.ELSE);
+			return sf.newSymbol("ELSE",sym.ELSE);
+            }
+            // fall through
+          case 48: break;
+          case 22:
+            { if(debug) System.out.println("token READ");
+			return sf.newSymbol("READ",sym.READ);
+            }
+            // fall through
+          case 49: break;
+          case 23:
+            { if(debug) System.out.println("token THEN");
+			return sf.newSymbol("THEN",sym.THEN);
+            }
+            // fall through
+          case 50: break;
+          case 24:
+            { if(debug) System.out.println("token UNTIL");
+			return sf.newSymbol("UNTIL",sym.UNTIL);
+            }
+            // fall through
+          case 51: break;
+          case 25:
+            { if(debug) System.out.println("token WRITE");
+			return sf.newSymbol("WRITE",sym.WRITE);
+            }
+            // fall through
+          case 52: break;
+          case 26:
+            { if(debug) System.out.println("token REPEAT");
+			return sf.newSymbol("REPEAT",sym.REPEAT);
             }
             // fall through
           case 53: break;
-          case 25:
-            { if(debug) System.out.println("token READ");
-			return sf.newSymbol("READ", sym.READ);
+          case 27:
+            { if(debug) System.out.println("token VECTOR");
+            return sf.newSymbol("VECTOR",sym.VECTOR);
             }
             // fall through
           case 54: break;
-          case 26:
-            { if(debug) System.out.println("token THEN");
-			return sf.newSymbol("THEN", sym.THEN);
-            }
-            // fall through
-          case 55: break;
-          case 27:
-            { if(debug) System.out.println("token UNTIL");
-			return sf.newSymbol("UNTIL", sym.UNTIL);
-            }
-            // fall through
-          case 56: break;
-          case 28:
-            { if(debug) System.out.println("token WRITE");
-			return sf.newSymbol("WRITE", sym.WRITE);
-            }
-            // fall through
-          case 57: break;
-          case 29:
-            { if(debug) System.out.println("token REPEAT");
-			return sf.newSymbol("REPEAT", sym.REPEAT);
-            }
-            // fall through
-          case 58: break;
-          default:
-            zzScanError(ZZ_NO_MATCH);
-        }
-      }
+=======
+          case 32: break;
+          case 4:
+            { if(debug) System.out.println("token LPAREN");
     }
   }
 

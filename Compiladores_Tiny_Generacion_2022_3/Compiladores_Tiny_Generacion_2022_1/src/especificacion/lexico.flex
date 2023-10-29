@@ -107,6 +107,15 @@ espacio		= [ \t]+
 ";"             {	if(debug) System.out.println("token SEMI");
 			return sf.newSymbol("SEMI",sym.SEMI);
 			}
+"vector"        { if(debug) System.out.println("token VECTOR");
+            return sf.newSymbol("VECTOR",sym.VECTOR);
+            }
+"["             {	if(debug) System.out.println("token LBRACKET");
+            return sf.newSymbol("LBRACKET",sym.LBRACKET);
+            }
+"]"             {	if(debug) System.out.println("token RBRACKET");
+            return sf.newSymbol("RBRACKET",sym.RBRACKET);
+            }
 /* Nuevos operadores logicos >, >=, <=, and, or*/
 
 ">"             {	if(debug) System.out.println("token GT");
