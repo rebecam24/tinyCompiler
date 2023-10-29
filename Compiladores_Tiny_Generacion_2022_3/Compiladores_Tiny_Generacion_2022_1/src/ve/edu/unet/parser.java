@@ -45,7 +45,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\005\000\002\013\003\000\002\014\005\000\002\014\005" +
     "\000\002\014\003\000\002\015\005\000\002\015\003\000" +
     "\002\015\003\000\002\015\003\000\002\015\003\000\002" +
-    "\015\005\000\002\017\006\000\002\016\005\000\002\007" +
+    "\015\005\000\002\017\006\000\002\016\006\000\002\007" +
     "\005" });
 
   /** Access to production table. */
@@ -54,8 +54,8 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\123\000\020\003\022\004\017\010\005\012\004\013" +
-    "\021\014\020\030\010\001\002\000\004\014\125\001\002" +
+    "\000\124\000\020\003\022\004\017\010\005\012\004\013" +
+    "\021\014\020\030\010\001\002\000\004\014\126\001\002" +
     "\000\020\003\022\004\017\010\005\012\004\013\021\014" +
     "\020\030\010\001\002\000\014\002\ufffc\006\ufffc\007\ufffc" +
     "\011\ufffc\027\ufffc\001\002\000\014\002\ufffd\006\ufffd\007" +
@@ -167,12 +167,13 @@ public class parser extends java_cup.runtime.lr_parser {
     "\006\ufff5\007\ufff5\011\ufff5\027\ufff5\001\002\000\004\002" +
     "\000\001\002\000\014\003\034\014\033\015\027\025\040" +
     "\031\037\001\002\000\014\002\uffd8\006\uffd8\007\uffd8\011" +
-    "\uffd8\027\uffd8\001\002\000\004\015\121\001\002\000\016" +
-    "\002\uffd9\006\uffd9\007\uffd9\011\uffd9\016\uffd9\027\uffd9\001" +
-    "\002\000\006\011\123\027\025\001\002\000\014\003\034" +
-    "\014\033\015\027\025\040\031\037\001\002\000\014\002" +
-    "\ufff4\006\ufff4\007\ufff4\011\ufff4\027\ufff4\001\002\000\014" +
-    "\002\ufff0\006\ufff0\007\ufff0\011\ufff0\027\ufff0\001\002" });
+    "\uffd8\027\uffd8\001\002\000\004\015\121\001\002\000\004" +
+    "\027\122\001\002\000\016\002\uffd9\006\uffd9\007\uffd9\011" +
+    "\uffd9\016\uffd9\027\uffd9\001\002\000\006\011\124\027\025" +
+    "\001\002\000\014\003\034\014\033\015\027\025\040\031" +
+    "\037\001\002\000\014\002\ufff4\006\ufff4\007\ufff4\011\ufff4" +
+    "\027\ufff4\001\002\000\014\002\ufff0\006\ufff0\007\ufff0\011" +
+    "\ufff0\027\ufff0\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -180,9 +181,9 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\123\000\026\002\014\003\022\004\011\005\006\006" +
+    "\000\124\000\026\002\014\003\022\004\011\005\006\006" +
     "\005\007\012\010\015\011\010\016\023\017\013\001\001" +
-    "\000\002\001\001\000\024\003\121\004\011\005\006\006" +
+    "\000\002\001\001\000\024\003\122\004\011\005\006\006" +
     "\005\007\012\010\015\011\010\016\023\017\013\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
@@ -224,8 +225,9 @@ public class parser extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\002\001\001\000\014\012\116" +
     "\013\035\014\027\015\034\017\031\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\014\012\123\013\035\014\027\015\034\017\031\001" +
-    "\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\014\012\124\013\035\014\027\015" +
+    "\034\017\031\001\001\000\002\001\001\000\002\001\001" +
+    "" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -994,15 +996,15 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // vector_stmt ::= VECTOR ID NUM 
+          case 40: // vector_stmt ::= VECTOR ID NUM SEMI 
             {
               NodoBase RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		int numleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int numright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		String num = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int numleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int numright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String num = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		  if(debug) System.out.println("\t regla 15a");
                                         if (id != null && num != null){
                                          NodoVector vector = new NodoVector(new NodoIdentificador(id.toString()),new NodoValor(Integer.parseInt(num)));
@@ -1014,7 +1016,7 @@ class CUP$parser$actions {
                                             System.out.println("Ocurrio error en cup # 00017");
                                         }
                                         
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("vector_stmt",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("vector_stmt",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 

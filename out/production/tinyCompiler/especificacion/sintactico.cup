@@ -12,7 +12,7 @@ SymbolFactory es una nueva caracteristica que ha sido a�adida a las version 11
 , esto debido a que dicha clase no provee mucha informaci�n de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
 Mas informacion en: http//4thmouse.com/index.php/2007/02/15/using-custom-symbols-in-cup/
 ***********/
-	public static void main(String args[]) throws Exception
+	public static void main(String args[]) throws Exception {
 		SymbolFactory sf = new DefaultSymbolFactory();
 		parser parser_obj;
 		if (args.length==0) 
@@ -290,7 +290,7 @@ ident ::= ID:id LBRACKET simple_exp:ex RBRACKET  {:  if(debug) System.out.printl
                                                 }
                                             :}
 ;
-vector_stmt ::= VECTOR ID:id NUM:num  {:  if(debug) System.out.println("\t regla 15a");
+vector_stmt ::= VECTOR ID:id NUM:num  SEMI {:  if(debug) System.out.println("\t regla 15a");
                                         if (id != null && num != null){
                                          NodoVector vector = new NodoVector(new NodoIdentificador(id.toString()),new NodoValor(Integer.parseInt(num)));
                                         vector.setDeclaracion(true);
