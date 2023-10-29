@@ -905,14 +905,10 @@ BORRAR SI NO SE NECESITA
           case 27:
             { if(debug) System.out.println("token VECTOR");
             return sf.newSymbol("VECTOR",sym.VECTOR);
-            }
             // fall through
           case 54: break;
           default:
             zzScanError(ZZ_NO_MATCH);
-        }
-      }
-    }
   }
 
 

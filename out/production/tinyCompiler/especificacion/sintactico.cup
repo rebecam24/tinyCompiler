@@ -189,7 +189,7 @@ read_stmt   ::= READ ID:variable	{: if(debug) System.out.println("\t regla 9");
 					:}
 		;
 
-write_stmt  ::= WRITE exp:ex	{: if(debug) System.out.println("\t regla 10");
+write_stmt  ::= WRITE exp:ex SEMI	{: if(debug) System.out.println("\t regla 8");
 					RESULT= new NodoEscribir(ex);
 					:}
 		;
