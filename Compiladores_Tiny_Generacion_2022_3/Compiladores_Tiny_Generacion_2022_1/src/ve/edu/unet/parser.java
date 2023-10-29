@@ -1021,11 +1021,11 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
+<<<<<<< HEAD
           case 41: // assign_stmt ::= ident ASSIGN exp 
+=======
+          case 43: // assign_stmt ::= ident ASSIGN exp 
             {
-              NodoBase RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		NodoBase id = (NodoBase)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int rleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;

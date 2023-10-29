@@ -940,10 +940,10 @@ BORRAR SI NO SE NECESITA
           case 63: break;
           case 32:
             { if(debug) System.out.println("token VECTOR");
-            return sf.newSymbol("VECTOR",sym.VECTOR);
-            }
-            // fall through
           case 64: break;
+=======
+          case 70: break;
+>>>>>>> doitforpls
           default:
             zzScanError(ZZ_NO_MATCH);
         }

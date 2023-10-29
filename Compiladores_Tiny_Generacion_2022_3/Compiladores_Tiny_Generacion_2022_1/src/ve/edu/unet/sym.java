@@ -28,15 +28,18 @@ public class sym {
   public static final int WRITE = 9;
   public static final int ID = 10;
   public static final int RBRACKET = 24;
+  public static final int LCB = 31;
   public static final int NUM = 11;
   public static final int EOF = 0;
   public static final int VECTOR = 22;
   public static final int GE = 27;
   public static final int MINUS = 16;
   public static final int error = 1;
+  public static final int RCB = 32;
   public static final int UNTIL = 7;
   public static final int ASSIGN = 12;
   public static final int EQ = 13;
+  public static final int FOR = 30;
   public static final int REPEAT = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",

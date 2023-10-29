@@ -133,6 +133,15 @@ espacio		= [ \t]+
 "or"             {	if(debug) System.out.println("token OR");
 			return sf.newSymbol("OR",sym.OR);
 			}
+"for"        {	if(debug) System.out.println("token FOR");
+			return sf.newSymbol("REPEAT",sym.FOR);
+			}
+"{"             { if(debug) System.out.println("token LCB");
+			return sf.newSymbol("LCB",sym.LCB);
+			}
+"}"             { if(debug) System.out.println("token RCB");
+			return sf.newSymbol("RCB",sym.RCB);
+			}
 /* Fin */
 {numero}        {	if(debug) System.out.println("token NUM");
 			return sf.newSymbol("NUM",sym.NUM,new String(yytext()));
@@ -142,5 +151,5 @@ espacio		= [ \t]+
 			}
 {nuevalinea}       {lineanum++;}
 {espacio}    { /* saltos espacios en blanco*/}
-"{"[^}]+"}"  { /* salto comentarios */ if(debug) System.out.println("token COMENTARIO"); }
+"/"[^}]+"/"  { /* salto comentarios */ if(debug) System.out.println("token COMENTARIO"); }
 .               {System.err.println("Caracter Ilegal encontrado en analisis lexico: " + yytext() + "\n");}
