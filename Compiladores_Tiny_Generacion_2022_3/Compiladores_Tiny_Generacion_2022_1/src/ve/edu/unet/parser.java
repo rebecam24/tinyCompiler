@@ -38,7 +38,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\000\002\004\003\000\002\004\003\000\002\004\003\000" +
     "\002\004\003\000\002\005\007\000\002\005\011\000\002" +
     "\006\006\000\002\016\002\000\002\007\006\000\002\010" +
-    "\005\000\002\011\005\000\002\012\005\000\002\012\005" +
+    "\004\000\002\011\005\000\002\012\005\000\002\012\005" +
     "\000\002\012\003\000\002\013\005\000\002\013\005\000" +
     "\002\013\003\000\002\014\005\000\002\014\005\000\002" +
     "\014\003\000\002\015\005\000\002\015\003\000\002\015" +
@@ -50,7 +50,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\070\000\016\003\017\004\015\010\005\012\004\013" +
+    "\000\067\000\016\003\017\004\015\010\005\012\004\013" +
     "\020\014\016\001\002\000\004\014\071\001\002\000\016" +
     "\003\017\004\015\010\005\012\004\013\020\014\016\001" +
     "\002\000\014\002\ufffc\006\ufffc\007\ufffc\011\ufffc\027\ufffc" +
@@ -115,8 +115,8 @@ public class parser extends java_cup.runtime.lr_parser {
     "\001\002\000\004\002\000\001\002\000\006\011\067\027" +
     "\022\001\002\000\012\003\026\014\025\015\024\025\032" +
     "\001\002\000\014\002\ufff5\006\ufff5\007\ufff5\011\ufff5\027" +
-    "\ufff5\001\002\000\004\027\072\001\002\000\014\002\ufff2" +
-    "\006\ufff2\007\ufff2\011\ufff2\027\ufff2\001\002" });
+    "\ufff5\001\002\000\014\002\ufff2\006\ufff2\007\ufff2\011\ufff2" +
+    "\027\ufff2\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -124,7 +124,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\070\000\022\002\012\003\020\004\010\005\006\006" +
+    "\000\067\000\022\002\012\003\020\004\010\005\006\006" +
     "\005\007\011\010\013\011\007\001\001\000\002\001\001" +
     "\000\020\003\065\004\010\005\006\006\005\007\011\010" +
     "\013\011\007\001\001\000\002\001\001\000\002\001\001" +
@@ -151,7 +151,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\010\013\011\007\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\012\012\067\013\030\014\026\015\027\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001" });
+    "\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -499,12 +499,12 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // read_stmt ::= READ ID SEMI 
+          case 15: // read_stmt ::= READ ID 
             {
               NodoBase RESULT =null;
-		int variableleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
-		int variableright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		String variable = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		int variableleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int variableright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String variable = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 if(debug) System.out.println("\t regla 7");
 					System.out.println("Leyendo Variable");
 					if(variable!=null)
@@ -514,7 +514,7 @@ class CUP$parser$actions {
 					System.out.println("Ocurrio error en cup # 0002");
 					}
 					
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("read_stmt",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("read_stmt",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
