@@ -71,7 +71,10 @@ public class sym {
   "LE",
   "GE",
   "AND",
-  "OR"
+  "OR",
+  "FOR",
+  "LCB",
+  "RCB"
   };
 }
 
