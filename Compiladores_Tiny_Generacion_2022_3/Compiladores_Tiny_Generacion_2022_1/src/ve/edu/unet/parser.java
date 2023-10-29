@@ -51,6 +51,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
+
     "\000\100\000\016\003\017\004\015\010\005\012\004\013" +
     "\020\014\016\001\002\000\004\014\102\001\002\000\016" +
     "\003\017\004\015\010\005\012\004\013\020\014\016\001" +
@@ -146,6 +147,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
+
     "\000\100\000\022\002\012\003\020\004\010\005\006\006" +
     "\005\007\011\010\013\011\007\001\001\000\002\001\001" +
     "\000\020\003\076\004\010\005\006\006\005\007\011\010" +
@@ -526,13 +528,13 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // read_stmt ::= READ ID 
+          case 15: // read_stmt ::= READ ID SEMI 
             {
               NodoBase RESULT =null;
-		int variableleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int variableright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		String variable = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 if(debug) System.out.println("\t regla 7"); 
+		int variableleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int variableright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String variable = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		 if(debug) System.out.println("\t regla 7");
 					System.out.println("Leyendo Variable");
 					if(variable!=null)
 					RESULT = new NodoLeer(variable.toString());
@@ -541,21 +543,21 @@ class CUP$parser$actions {
 					System.out.println("Ocurrio error en cup # 0002");
 					}
 					
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("read_stmt",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("read_stmt",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // write_stmt ::= WRITE exp 
+          case 16: // write_stmt ::= WRITE exp SEMI 
             {
               NodoBase RESULT =null;
-		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		NodoBase ex = (NodoBase)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 if(debug) System.out.println("\t regla 8"); 
+		int exleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int exright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		NodoBase ex = (NodoBase)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		 if(debug) System.out.println("\t regla 8");
 					RESULT= new NodoEscribir(ex);
 					
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("write_stmt",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("write_stmt",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
