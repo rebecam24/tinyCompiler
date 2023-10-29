@@ -737,7 +737,7 @@ BORRAR SI NO SE NECESITA
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
             zzDoEOF();
-          {     return sf.newSymbol("EOF", sym.EOF);
+          {     return sf.newSymbol("EOF",sym.EOF);
  }
       }
       else {
@@ -759,115 +759,115 @@ BORRAR SI NO SE NECESITA
           case 32: break;
           case 4:
             { if(debug) System.out.println("token LPAREN");
-			return sf.newSymbol("LPAREN", sym.LPAREN);
+			return sf.newSymbol("LPAREN",sym.LPAREN);
             }
             // fall through
           case 33: break;
           case 5:
             { if(debug) System.out.println("token RPAREN");
-			return sf.newSymbol("RPAREN", sym.RPAREN);
+			return sf.newSymbol("RPAREN",sym.RPAREN);
             }
             // fall through
           case 34: break;
           case 6:
             { if(debug) System.out.println("token TIMES");
-			return sf.newSymbol("TIMES", sym.TIMES);
+			return sf.newSymbol("TIMES",sym.TIMES);
             }
             // fall through
           case 35: break;
           case 7:
             { if(debug) System.out.println("token PLUS");
-			return sf.newSymbol("PLUS", sym.PLUS);
+			return sf.newSymbol("PLUS",sym.PLUS);
             }
             // fall through
           case 36: break;
           case 8:
             { if(debug) System.out.println("token MINUS");
-			return sf.newSymbol("MINUS", sym.MINUS);
+			return sf.newSymbol("MINUS",sym.MINUS);
             }
             // fall through
           case 37: break;
           case 9:
             { if(debug) System.out.println("token OVER");
-			return sf.newSymbol("OVER", sym.OVER);
+			return sf.newSymbol("OVER",sym.OVER);
             }
             // fall through
           case 38: break;
           case 10:
             { if(debug) System.out.println("token NUM");
-			return sf.newSymbol("NUM", sym.NUM,new String(yytext()));
+			return sf.newSymbol("NUM",sym.NUM,new String(yytext()));
             }
             // fall through
           case 39: break;
           case 11:
             { if(debug) System.out.println("token SEMI");
-			return sf.newSymbol("SEMI", sym.SEMI);
+			return sf.newSymbol("SEMI",sym.SEMI);
             }
             // fall through
           case 40: break;
           case 12:
             { if(debug) System.out.println("token LT");
-			return sf.newSymbol("LT", sym.LT);
+			return sf.newSymbol("LT",sym.LT);
             }
             // fall through
           case 41: break;
           case 13:
             { if(debug) System.out.println("token EQ");
-			return sf.newSymbol("EQ", sym.EQ);
+			return sf.newSymbol("EQ",sym.EQ);
             }
             // fall through
           case 42: break;
           case 14:
             { if(debug) System.out.println("token GT");
-			return sf.newSymbol("GT", sym.GT);
+			return sf.newSymbol("GT",sym.GT);
             }
             // fall through
           case 43: break;
           case 15:
             { if(debug) System.out.println("token ID");
-				return sf.newSymbol("ID", sym.ID,new String(yytext()));
+				return sf.newSymbol("ID",sym.ID,new String(yytext()));
             }
             // fall through
           case 44: break;
           case 16:
             { if(debug) System.out.println("token ASSIGN");
-			return sf.newSymbol("ASSIGN", sym.ASSIGN);
+			return sf.newSymbol("ASSIGN",sym.ASSIGN);
             }
             // fall through
           case 45: break;
           case 17:
             { if(debug) System.out.println("token LE");
-			return sf.newSymbol("LE", sym.LE);
+			return sf.newSymbol("LE",sym.LE);
             }
             // fall through
           case 46: break;
           case 18:
             { if(debug) System.out.println("token GE");
-			return sf.newSymbol("GE", sym.GE);
+			return sf.newSymbol("GE",sym.GE);
             }
             // fall through
           case 47: break;
           case 19:
             { if(debug) System.out.println("token IF");
-			return sf.newSymbol("IF", sym.IF);
+			return sf.newSymbol("IF",sym.IF);
             }
             // fall through
           case 48: break;
           case 20:
             { if(debug) System.out.println("token OR");
-			return sf.newSymbol("OR", sym.OR);
+			return sf.newSymbol("OR",sym.OR);
             }
             // fall through
           case 49: break;
           case 21:
             { if(debug) System.out.println("token AND");
-			return sf.newSymbol("AND", sym.AND);
+			return sf.newSymbol("AND",sym.AND);
             }
             // fall through
           case 50: break;
           case 22:
             { if(debug) System.out.println("token END");
-			return sf.newSymbol("END", sym.END);
+			return sf.newSymbol("END",sym.END);
             }
             // fall through
           case 51: break;
@@ -878,37 +878,37 @@ BORRAR SI NO SE NECESITA
           case 52: break;
           case 24:
             { if(debug) System.out.println("token ELSE");
-			return sf.newSymbol("ELSE", sym.ELSE);
+			return sf.newSymbol("ELSE",sym.ELSE);
             }
             // fall through
           case 53: break;
           case 25:
             { if(debug) System.out.println("token READ");
-			return sf.newSymbol("READ", sym.READ);
+			return sf.newSymbol("READ",sym.READ);
             }
             // fall through
           case 54: break;
           case 26:
             { if(debug) System.out.println("token THEN");
-			return sf.newSymbol("THEN", sym.THEN);
+			return sf.newSymbol("THEN",sym.THEN);
             }
             // fall through
           case 55: break;
           case 27:
             { if(debug) System.out.println("token UNTIL");
-			return sf.newSymbol("UNTIL", sym.UNTIL);
+			return sf.newSymbol("UNTIL",sym.UNTIL);
             }
             // fall through
           case 56: break;
           case 28:
             { if(debug) System.out.println("token WRITE");
-			return sf.newSymbol("WRITE", sym.WRITE);
+			return sf.newSymbol("WRITE",sym.WRITE);
             }
             // fall through
           case 57: break;
           case 29:
             { if(debug) System.out.println("token REPEAT");
-			return sf.newSymbol("REPEAT", sym.REPEAT);
+			return sf.newSymbol("REPEAT",sym.REPEAT);
             }
             // fall through
           case 58: break;

@@ -12,7 +12,7 @@ SymbolFactory es una nueva caracteristica que ha sido a�adida a las version 11
 , esto debido a que dicha clase no provee mucha informaci�n de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
 Mas informacion en: http//4thmouse.com/index.php/2007/02/15/using-custom-symbols-in-cup/
 ***********/
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]) throws Exception
 		SymbolFactory sf = new DefaultSymbolFactory();
 		parser parser_obj;
 		if (args.length==0) 
@@ -41,7 +41,7 @@ action code {:
 	private int lineanum=0;
 	
 	//Debe ser llamada solo despues de un parse(), en caso contrario retornara null siempre;
-	public NodoBase getASTroot(){
+	public NodoBase getASTroot (){
 		return ast;
 	}
 	
@@ -69,6 +69,11 @@ terminal OVER;
 terminal LPAREN;
 terminal RPAREN;
 terminal SEMI;
+terminal GT;
+terminal LE;
+terminal GE;
+terminal AND;
+terminal OR;
 
 /* Simbolos No Terminales */
 non terminal program;
@@ -183,7 +188,22 @@ exp         ::= simple_exp:exI LT simple_exp:exD	{: if(debug) System.out.println
 		| simple_exp:exI EQ simple_exp:exD	{: if(debug) System.out.println("\t regla 9b"); 
 							RESULT = new NodoOperacion(exI,tipoOp.igual,exD);
 							:}
-		| simple_exp:ex	{: if(debug) System.out.println("\t regla 9c"); 
+		| simple_exp:exI GT simple_exp:exD	{: if(debug) System.out.println("\t regla 9c");
+							RESULT = new NodoOperacion(exI,tipoOp.mayor,exD);
+							:}
+		| simple_exp:exI LE simple_exp:exD	{: if(debug) System.out.println("\t regla 9d");
+							RESULT = new NodoOperacion(exI,tipoOp.menorIgual,exD);
+							:}
+		| simple_exp:exI GE simple_exp:exD	{: if(debug) System.out.println("\t regla 9e");
+							RESULT = new NodoOperacion(exI,tipoOp.mayorIgual,exD);
+							:}
+		| simple_exp:exI AND simple_exp:exD	{: if(debug) System.out.println("\t regla 9f");
+							RESULT = new NodoOperacion(exI,tipoOp.and,exD);
+							:}
+		| simple_exp:exI OR simple_exp:exD	{: if(debug) System.out.println("\t regla 9g");
+							RESULT = new NodoOperacion(exI,tipoOp.or,exD);
+							:}
+		| simple_exp:ex	{: if(debug) System.out.println("\t regla 9h");
 					RESULT = ex;
 					:}
 		;
