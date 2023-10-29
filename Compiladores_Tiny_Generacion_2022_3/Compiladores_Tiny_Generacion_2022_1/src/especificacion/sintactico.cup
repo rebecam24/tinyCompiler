@@ -12,7 +12,7 @@ SymbolFactory es una nueva caracteristica que ha sido a�adida a las version 11
 , esto debido a que dicha clase no provee mucha informaci�n de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
 Mas informacion en: http//4thmouse.com/index.php/2007/02/15/using-custom-symbols-in-cup/
 ***********/
-	public static void main(String args[]) throws Exception
+	public static void main(String args[]) throws Exception {
 		SymbolFactory sf = new DefaultSymbolFactory();
 		parser parser_obj;
 		if (args.length==0) 
@@ -77,6 +77,9 @@ terminal LE;
 terminal GE;
 terminal AND;
 terminal OR;
+terminal FOR;
+terminal LCB;
+terminal RCB;
 
 /* Simbolos No Terminales */
 non terminal program;
@@ -92,6 +95,7 @@ non terminal NodoBase simple_exp;
 non terminal NodoBase term;
 non terminal NodoBase factor;
 non terminal NodoBase vector_stmt;
+non terminal NodoBase for_stmt;
 non terminal NodoBase ident;
 
 /* Precedencia de operadores */
@@ -141,6 +145,9 @@ stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a");
             | vector_stmt:sarray	{: if(debug) System.out.println("\t regla 3f");
                                      RESULT=sarray;
                                      :}
+			| for_stmt: sfor {: if(debug) System.out.println("\t regla 3h");
+			        RESULT=sfor;
+			        :}
             | error	{: if(debug) System.out.println("\t regla 3g");
 				System.out.println("Ocurrio error en cup # 0004");
 				RESULT=null;
@@ -159,6 +166,11 @@ repeat_stmt ::= REPEAT stmt_seq:cuerpo UNTIL exp:prueba	{: if(debug) System.out.
 							RESULT = new NodoRepeat(cuerpo,prueba);
 							:}
 		;
+
+for_stmt ::= FOR LPAREN exp:prueba RPAREN LCB stmt_seq:cuerpo RCB {: if(debug) System.out.println("\t regla for");
+                            RESULT = new  NodoFor(cuerpo, prueba);
+                            :}
+        ;
 
 assign_stmt ::= ID:variable 	{: if(debug) System.out.println("\t regla 7 parte del medio");
 				/*lineanum=1000; //Pasar/Obtener la linea correcta por el Simbolo
@@ -205,7 +217,6 @@ exp         ::= simple_exp:exI LT simple_exp:exD	{: if(debug) System.out.println
 		| simple_exp:exI EQ simple_exp:exD	{: if(debug) System.out.println("\t regla 11b");
 							RESULT = new NodoOperacion(exI,tipoOp.igual,exD);
 							:}
-		| simple_exp:ex	{: if(debug) System.out.println("\t regla 11c");
 		| simple_exp:exI GT simple_exp:exD	{: if(debug) System.out.println("\t regla 9c");
 							RESULT = new NodoOperacion(exI,tipoOp.mayor,exD);
 							:}
@@ -302,27 +313,8 @@ vector_stmt ::= VECTOR ID:id NUM:num  {:  if(debug) System.out.println("\t regla
                                             System.out.println("Ocurrio error en cup # 00017");
                                         }
                                         :}
-//                                    :}
-//        | ident:id LBRACKET simple_exp:ex RBRACKET  {:  if(debug) System.out.println("\t regla 15b");
-//                                                                  if (id != null && ex != null){
-//                                                                      RESULT = new NodoVector(new NodoIdentificador(id.toString()),ex);
-//                                                                      System.out.println("Devuelve expresion entre []");
-//                                                                  }
-//                                                                  else{
-//                                                                      RESULT = null;
-//                                                                      System.out.println("Ocurrio error en cup # 0005");
-//                                                                  }
-//                                                              :}
-//        | ident:id LBRACKET simple_exp:ex RBRACKET assign_stmt: NUM {:  if(debug) System.out.println("\t regla 15c");
-//                                                                            if (id != null && ex != null){
-//                                                                                RESULT = new NodoVector(new NodoIdentificador(id.toString()),ex);
-//                                                                                System.out.println("Devuelve expresion entre []");
-//                                                                            }
-//                                                                            else{
-//                                                                                RESULT = null;
-//                                                                                System.out.println("Ocurrio error en cup # 0005");
-//                                                                            }
-//                                                                        :}
+
+                                                                      
 ;
 assign_stmt ::= ident:id ASSIGN exp:r    {:  if(debug) System.out.println("\t regla 16");
                                             if(id!=null)
