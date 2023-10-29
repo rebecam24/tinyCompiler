@@ -2,8 +2,6 @@ package ve.edu.unet;
 
 import ve.edu.unet.nodosAST.*;
 
-import java.util.Scanner;
-
 public class Generador {
 	/* Ilustracion de la disposicion de la memoria en
 	 * este ambiente de ejecucion para el lenguaje Tiny
@@ -132,10 +130,6 @@ public class Generador {
 	}
 	private static void generarFor(NodoBase nodo){
 		NodoFor n = (NodoFor)nodo;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Presione Enter para continuar..."+n.getPrueba() );
-		System.out.println("Presione Enter para continuar..."+n.getCuerpo() );
-		scanner.nextLine();
 		int localidadSaltoInicio, localidadCondicionWhile,localidadFinal;
 		if(UtGen.debug) UtGen.emitirComentario("-> while");
 		localidadSaltoInicio = UtGen.emitirSalto(0);
