@@ -27,6 +27,8 @@ public class Util {
 		    		|| raiz instanceof NodoValor
 		    		|| raiz instanceof NodoIdentificador )
 		    	imprimirNodo(raiz);
+			else if (raiz instanceof  NodoVector)
+				System.out.println("Vector");
 		    else System.out.println("Tipo de nodo desconocido");;
 		    
 		    /* Hago el recorrido recursivo */
@@ -63,6 +65,9 @@ public class Util {
 		    	System.out.println("**Expr Derecha Operacion**");		    	
 		    	imprimirAST(((NodoOperacion)raiz).getOpDerecho());
 		    }
+			else if (raiz instanceof  NodoVector)
+				imprimirAST(((NodoVector)raiz).getExpresion());
+
 		    raiz = raiz.getHermanoDerecha();
 		  }
 		  sangria-=2;
@@ -109,6 +114,10 @@ static void imprimirNodo( NodoBase raiz )
 
 	if(	raiz instanceof NodoIdentificador ){
 		System.out.println("ID, nombre= "+ ((NodoIdentificador)raiz).getNombre());
+	}
+
+	if(	raiz instanceof NodoVector ){
+		System.out.println("ID, nombre= "+ ((NodoVector)raiz).getNombre());
 	}
 
 }

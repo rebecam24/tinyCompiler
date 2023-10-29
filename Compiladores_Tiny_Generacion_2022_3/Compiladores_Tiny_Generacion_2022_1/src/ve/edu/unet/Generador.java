@@ -75,6 +75,9 @@ public class Generador {
 			generarIdentificador(nodo);
 		}else if (nodo instanceof NodoOperacion){
 			generarOperacion(nodo);
+		}else if (nodo instanceof NodoVector){
+			if(!((NodoVector)nodo).isDeclaracion())
+				generarVector(nodo);
 		}else{
 			System.out.println("BUG: Tipo de nodo a generar desconocido");
 		}
@@ -82,7 +85,7 @@ public class Generador {
 		if(nodo.TieneHermano())
 			generar(nodo.getHermanoDerecha());
 	}else
-		System.out.println("¡¡¡ERROR: por favor fije la tabla de simbolos a usar antes de generar codigo objeto!!!");
+		System.out.println("ï¿½ï¿½ï¿½ERROR: por favor fije la tabla de simbolos a usar antes de generar codigo objeto!!!");
 }
 
 	private static void generarIf(NodoBase nodo){
@@ -134,9 +137,26 @@ public class Generador {
 		/* Genero el codigo para la expresion a la derecha de la asignacion */
 		generar(n.getExpresion());
 		/* Ahora almaceno el valor resultante */
-		direccion = tablaSimbolos.getDireccion(n.getIdentificador());
+		direccion = tablaSimbolos.getDireccion(n.getIdentificador(), 0);
 		UtGen.emitirRM("ST", UtGen.AC, direccion, UtGen.GP, "asignacion: almaceno el valor para el id "+n.getIdentificador());
 		if(UtGen.debug)	UtGen.emitirComentario("<- asignacion");
+
+		if(n.getVariable()  instanceof  NodoVector){
+			NodoVector variable = (NodoVector)n.getVariable();
+			NodoIdentificador identificador_vector = (NodoIdentificador)variable.getIdentificador();
+			direccion = tablaSimbolos.getDireccion(identificador_vector.getNombre(),0);
+			UtGen.emitirRM("LDA", UtGen.AC, direccion , UtGen.GP,"cargar direccion de identificador: "+identificador_vector.getNombre());
+
+			if (variable.getExpresion() instanceof NodoOperacion){
+				generarOperacion(variable.getExpresion());
+			}else{
+				generar(variable.getExpresion());
+			}
+
+			UtGen.emitirRM_Abs("IXA",  UtGen.AC , direccion,"cargar direccion de identificador: "+identificador_vector.getNombre());
+			generar(n.getExpresion());
+			UtGen.emitirRM_Abs("STO",  UtGen.AC, direccion,"asignacion: almaceno el valor para el id "+identificador_vector.getNombre());
+		}
 	}
 	
 	private static void generarLeer(NodoBase nodo){
@@ -144,9 +164,29 @@ public class Generador {
 		int direccion;
 		if(UtGen.debug)	UtGen.emitirComentario("-> leer");
 		UtGen.emitirRO("IN", UtGen.AC, 0, 0, "leer: lee un valor entero ");
-		direccion = tablaSimbolos.getDireccion(n.getIdentificador());
+		direccion = tablaSimbolos.getDireccion(n.getIdentificador(),0);
 		UtGen.emitirRM("ST", UtGen.AC, direccion, UtGen.GP, "leer: almaceno el valor entero leido en el id "+n.getIdentificador());
 		if(UtGen.debug)	UtGen.emitirComentario("<- leer");
+
+		if(n.getVariable() instanceof NodoIdentificador){
+			NodoIdentificador id = (NodoIdentificador)n.getVariable();
+			direccion = tablaSimbolos.getDireccion(id.getNombre(),0);
+			UtGen.emitirRM("LDA", UtGen.AC, direccion , UtGen.GP, "cargar direccion de identificador: "+id.getNombre());
+			UtGen.emitirRM("RDI",UtGen.AC,direccion,UtGen.GP, "leer el valor para el identificador "+id.getNombre());
+		}else if(n.getVariable() instanceof NodoVector){
+			NodoVector vector = (NodoVector)n.getVariable();
+			NodoIdentificador id = (NodoIdentificador)vector.getIdentificador();
+			direccion = tablaSimbolos.getDireccion(id.getNombre(),0);
+			UtGen.emitirRM("LDA",UtGen.AC, direccion ,UtGen.GP, "cargar direccion de la variable: "+id.getNombre());
+
+			if (vector.getExpresion() instanceof NodoOperacion){
+				generarOperacion(vector.getExpresion());
+			}else{
+				generar(vector.getExpresion());
+			}
+			UtGen.emitirRM_Abs("IXA", UtGen.AC,direccion,  "cargar la direccion de la posicion del vector: "+id.getNombre());
+			UtGen.emitirRM_Abs("RDI",UtGen.AC, direccion,  "leer el valor para el identificador "+id.getNombre());
+		}
 	}
 	
 	private static void generarEscribir(NodoBase nodo){
@@ -170,11 +210,25 @@ public class Generador {
 		NodoIdentificador n = (NodoIdentificador)nodo;
 		int direccion;
 		if(UtGen.debug)	UtGen.emitirComentario("-> identificador");
-		direccion = tablaSimbolos.getDireccion(n.getNombre());
+		direccion = tablaSimbolos.getDireccion(n.getNombre(),0);
 		UtGen.emitirRM("LD", UtGen.AC, direccion, UtGen.GP, "cargar valor de identificador: "+n.getNombre());
 		if(UtGen.debug)	UtGen.emitirComentario("-> identificador");
 	}
+	private static void generarVector(NodoBase nodo){
+		NodoVector n = (NodoVector) nodo;
+		NodoIdentificador ni = (NodoIdentificador) n.getIdentificador();
+		int direccion = tablaSimbolos.getDireccion(ni.getNombre(),0);
+		UtGen.emitirRM("LDA", UtGen.AC, direccion, UtGen.GP, "cargar direccion de la variable: "+ni.getNombre());
 
+		if (n.getExpresion() instanceof NodoOperacion){
+			generarOperacion(n.getExpresion());
+		}else{
+			generar(n.getExpresion());
+		}
+
+		UtGen.emitirRM_Abs("IXA",UtGen.AC, direccion, "cargar la direccion de la posicion del vector: "+ni.getNombre());
+		UtGen.emitirRM_Abs("IND",UtGen.AC, direccion,"cargar el valor de la direccion anterior");
+	}
 	private static void generarOperacion(NodoBase nodo){
 		NodoOperacion n = (NodoOperacion) nodo;
 		if(UtGen.debug)	UtGen.emitirComentario("-> Operacion: " + n.getOperacion());
@@ -206,7 +260,7 @@ public class Generador {
 							UtGen.emitirRM("LDC", UtGen.AC, 0, UtGen.AC, "caso de falso (AC=0)");
 							UtGen.emitirRM("LDA", UtGen.PC, 1, UtGen.PC, "Salto incodicional a direccion: PC+1 (es falso evito colocarlo verdadero)");
 							UtGen.emitirRM("LDC", UtGen.AC, 1, UtGen.AC, "caso de verdadero (AC=1)");
-							break;	
+							break;
 			default:
 							UtGen.emitirComentario("BUG: tipo de operacion desconocida");
 		}

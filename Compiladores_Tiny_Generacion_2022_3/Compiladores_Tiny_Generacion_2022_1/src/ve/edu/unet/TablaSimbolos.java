@@ -8,6 +8,7 @@ import java.util.*;
 
 
 public class TablaSimbolos {
+	private ArrayList<HashMap<String, RegistroSimbolo>> secciones;
 	private HashMap<String, RegistroSimbolo> tabla;
 	private int direccion;  //Contador de las localidades de memoria asignadas a la tabla
 	
@@ -17,11 +18,11 @@ public class TablaSimbolos {
 		direccion=0;
 	}
 
-	public void cargarTabla(NodoBase raiz){
+	public void cargarTabla(NodoBase raiz) throws IdNotFoundException, VectorAlreadyDeclared{
 		while (raiz != null) {
 	    if (raiz instanceof NodoIdentificador){
 	    	InsertarSimbolo(((NodoIdentificador)raiz).getNombre(),-1);
-	    	//TODO: Añadir el numero de linea y localidad de memoria correcta
+	    	//TODO: Aï¿½adir el numero de linea y localidad de memoria correcta
 	    }
 
 	    /* Hago el recorrido recursivo */
@@ -44,6 +45,27 @@ public class TablaSimbolos {
 	    	cargarTabla(((NodoOperacion)raiz).getOpIzquierdo());
 	    	cargarTabla(((NodoOperacion)raiz).getOpDerecho());
 	    }
+		else if(raiz instanceof NodoVector) {
+			NodoVector vector = (NodoVector) raiz;
+			boolean inserto = false;
+			if (vector.isDeclaracion()) {
+				cargarTabla(vector.getExpresion());
+				int direccionesReservadas = ((NodoValor) vector.getExpresion()).getValor();
+				if (BuscarSimbolo(((NodoIdentificador) vector.getIdentificador()).getNombre()) == null) {
+					InsertarSimbolo(((NodoIdentificador) vector.getIdentificador()).getNombre(),-1);
+					this.direccion += direccionesReservadas - 1;
+				} else {
+					throw new VectorAlreadyDeclared("El vector " + ((NodoIdentificador) vector.getIdentificador()).getNombre() + " ya esta declarado");
+				}
+			} else {
+				String identificador = ((NodoIdentificador) vector.getIdentificador()).getNombre();
+				RegistroSimbolo simbolo = BuscarSimbolo(identificador);
+				if (simbolo == null) {
+					throw new IdNotFoundException("El vector " + ((NodoIdentificador) vector.getIdentificador()).getNombre() + " no esta esta declarado");
+				}
+				cargarTabla(vector.getExpresion());
+			}
+		}
 	    raiz = raiz.getHermanoDerecha();
 	  }
 	}
@@ -73,12 +95,56 @@ public class TablaSimbolos {
 		}
 	}
 
-	public int getDireccion(String Clave){
+	public int getDireccion(String Clave, int numLinea){
 		return BuscarSimbolo(Clave).getDireccionMemoria();
 	}
-	
+
+	public RegistroSimbolo BuscarSimbolo(String identificador, int bloque){
+		HashMap<String, RegistroSimbolo> seccion;
+		try {
+			// si la seccion existe
+			seccion = secciones.get(bloque);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
+		RegistroSimbolo simbolo = (RegistroSimbolo)seccion.get(identificador);
+		return simbolo;
+	}
+
+	public void ImprimirTabla(){
+		System.out.println("*** Tabla de Simbolos ***");
+		for(int i = 0; i<secciones.size(); i++){
+			for (String s : secciones.get(i).keySet()) {
+				System.out.println("Bloque: " + i + " Nombre: "+ s + " Con direccion: " + BuscarSimbolo(s,i).getDireccionMemoria());
+			}
+		}
+
+	}
+
 	/*
 	 * TODO:
 	 * 1. Crear lista con las lineas de codigo donde la variable es usada.
 	 * */
+
+	public class VectorAlreadyDeclared extends Exception {
+
+		public VectorAlreadyDeclared(String message) {
+			super(message);
+		}
+
+		public VectorAlreadyDeclared(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+
+	public class IdNotFoundException extends Exception {
+
+		public IdNotFoundException(String message) {
+			super(message);
+		}
+
+		public IdNotFoundException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
 }
