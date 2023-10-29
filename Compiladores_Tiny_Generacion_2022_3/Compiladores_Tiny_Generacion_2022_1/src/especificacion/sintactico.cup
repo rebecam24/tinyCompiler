@@ -69,10 +69,9 @@ terminal OVER;
 terminal LPAREN;
 terminal RPAREN;
 terminal SEMI;
-terminal SEMICOLON;
 terminal FOR;
-terminal LCB;
-terminal RCB;
+//terminal LCB;
+//terminal RCB;
 
 /* Simbolos No Terminales */
 non terminal program;
@@ -90,8 +89,6 @@ non terminal NodoBase factor;
 
 /* No terminales ciclo for */
 non terminal NodoBase for_stmt;
-non terminal NodoBase stmt_for;
-non terminal NodoBase param_for;
 
 /* Precedencia de operadores */
 precedence left PLUS;
@@ -137,10 +134,10 @@ stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a");
             | write_stmt:sesc	{: if(debug) System.out.println("\t regla 3e"); 
 					RESULT=sesc;
 					:}
-			| for_stmt: sfor {: if(debug) System.out.println("\t regla 3g");
-			RESULT=sfor;
-			:}
-            | error	{: if(debug) System.out.println("\t regla 3f"); 
+			| for_stmt: sfor {: if(debug) System.out.println("\t regla 3f");
+					RESULT=sfor;
+					:}
+            | error	{: if(debug) System.out.println("\t regla 3g"); 
 				System.out.println("Ocurrio error en cup # 0004");
 				RESULT=null;
 				:}
@@ -248,8 +245,7 @@ factor      ::= LPAREN exp:ex RPAREN	{: if(debug) System.out.println("\t regla 1
 				RESULT=null;
 				:}
 		;
-
-for_stmt ::= FOR assign_stmt:indice SEMICOLON exp:condicion SEMICOLON exp:cc LCB stmt_seq:cuerpo RCB {: if(debug) System.out.println("\t Regla 13a");
-                            RESULT = new NodoFor(indice, condicion, cc,  cuerpo);
+for_stmt ::=  FOR exp:prueba LPAREN stmt_seq:cuerpo RPAREN {: if(debug) System.out.println("\t regla for");
+                            RESULT = new  NodoFor(cuerpo, prueba);
                             :}
         ;

@@ -2,48 +2,27 @@ package ve.edu.unet.nodosAST;
 
 public class NodoFor extends NodoBase {
 
-    private NodoBase indice;
-    private NodoBase condicion;
     private NodoBase cuerpo;
-    private NodoBase cc;
+    private NodoBase prueba;
 
-    public NodoFor(NodoBase indice, NodoBase condicion, NodoBase cc, NodoBase cuerpo){
-        super();
-        this.indice = indice;
-        this.condicion  = condicion;
+    public NodoFor(NodoBase cuerpo, NodoBase prueba) {
         this.cuerpo = cuerpo;
-        this.cc = cc;
+        this.prueba = prueba;
     }
 
-    public NodoBase getIndice(){
-        return indice;
-    }
-
-    public NodoBase getCondicion(){
-        return condicion;
-    }
-
-    public NodoBase getCuerpo(){
+    public NodoBase getCuerpo() {
         return cuerpo;
     }
 
-    public NodoBase getCc(){
-        return cc;
-    }
-
-    public void setIndice(NodoBase indice){
-        this.indice = indice;
-    }
-
-    public void setCondicion(NodoBase condicion){
-        this.condicion = condicion;
-    }
-
-    public void setCc(NodoBase cc){
-        this.cc = cc;
-    }
-
-    public void setCuerpo(NodoBase cuerpo){
+    public void setCuerpo(NodoBase cuerpo) {
         this.cuerpo = cuerpo;
+    }
+
+    public NodoBase getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(NodoBase prueba) {
+        this.prueba = prueba;
     }
 }

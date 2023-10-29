@@ -2,6 +2,8 @@ package ve.edu.unet;
 
 import ve.edu.unet.nodosAST.*;
 
+import java.util.Scanner;
+
 public class Generador {
 	/* Ilustracion de la disposicion de la memoria en
 	 * este ambiente de ejecucion para el lenguaje Tiny
@@ -63,6 +65,8 @@ public class Generador {
 			generarIf(nodo);
 		}else if (nodo instanceof  NodoRepeat){
 			generarRepeat(nodo);
+		}else if (nodo instanceof  NodoFor){
+			generarFor(nodo);
 		}else if (nodo instanceof  NodoAsignacion){
 			generarAsignacion(nodo);
 		}else if (nodo instanceof  NodoLeer){
@@ -82,7 +86,7 @@ public class Generador {
 		if(nodo.TieneHermano())
 			generar(nodo.getHermanoDerecha());
 	}else
-		System.out.println("¡¡¡ERROR: por favor fije la tabla de simbolos a usar antes de generar codigo objeto!!!");
+		System.out.println("ï¿½ï¿½ï¿½ERROR: por favor fije la tabla de simbolos a usar antes de generar codigo objeto!!!");
 }
 
 	private static void generarIf(NodoBase nodo){
@@ -125,8 +129,27 @@ public class Generador {
 			generar(n.getPrueba());
 			UtGen.emitirRM_Abs("JEQ", UtGen.AC, localidadSaltoInicio, "repeat: jmp hacia el inicio del cuerpo");
 		if(UtGen.debug)	UtGen.emitirComentario("<- repeat");
-	}		
-	
+	}
+	private static void generarFor(NodoBase nodo){
+		NodoFor n = (NodoFor)nodo;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Presione Enter para continuar..."+n.getPrueba() );
+		System.out.println("Presione Enter para continuar..."+n.getCuerpo() );
+		scanner.nextLine();
+		int localidadSaltoInicio, localidadCondicionWhile,localidadFinal;
+		if(UtGen.debug) UtGen.emitirComentario("-> while");
+		localidadSaltoInicio = UtGen.emitirSalto(0);
+		generar(n.getPrueba());
+		localidadCondicionWhile = UtGen.emitirSalto(1);
+		generar(n.getCuerpo());
+		UtGen.emitirRM_Abs("JNE", UtGen.AC, localidadSaltoInicio, "While: jmp hacia el inicio del cuerpo");
+		localidadFinal = UtGen.emitirSalto(0);
+		UtGen.cargarRespaldo(localidadCondicionWhile);
+		UtGen.emitirRM_Abs("JEQ", UtGen.AC, localidadFinal , "While: jmp hacia el final del cuerpo del while");
+		UtGen.restaurarRespaldo();
+		if(UtGen.debug)	UtGen.emitirComentario("<- while");
+	}
+
 	private static void generarAsignacion(NodoBase nodo){
 		NodoAsignacion n = (NodoAsignacion)nodo;
 		int direccion;

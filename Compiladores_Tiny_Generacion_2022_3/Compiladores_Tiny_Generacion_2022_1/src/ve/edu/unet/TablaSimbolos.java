@@ -37,10 +37,8 @@ public class TablaSimbolos {
 	    	cargarTabla(((NodoRepeat)raiz).getPrueba());
 	    }
 		else if (raiz instanceof  NodoFor) {
-			cargarTabla(((NodoFor) raiz).getIndice());
-			cargarTabla(((NodoFor) raiz).getCondicion());
-			cargarTabla(((NodoFor) raiz).getCc());
-			cargarTabla(((NodoFor) raiz).getCuerpo());
+			cargarTabla(((NodoFor)raiz).getPrueba());
+			cargarTabla(((NodoFor)raiz).getCuerpo());
 		}
 	    else if (raiz instanceof  NodoAsignacion)
 	    	cargarTabla(((NodoAsignacion)raiz).getExpresion());

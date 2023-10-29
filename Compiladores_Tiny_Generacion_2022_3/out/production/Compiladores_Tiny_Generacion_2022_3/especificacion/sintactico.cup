@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 parser code {:
 
 /***********
-SymbolFactory es una nueva caracteristica que ha sido añadida a las version 11a de cup, la cual facilita la implementacion de clases Symbol personalizadas
-, esto debido a que dicha clase no provee mucha información de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
+SymbolFactory es una nueva caracteristica que ha sido aï¿½adida a las version 11a de cup, la cual facilita la implementacion de clases Symbol personalizadas
+, esto debido a que dicha clase no provee mucha informaciï¿½n de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
 Mas informacion en: http//4thmouse.com/index.php/2007/02/15/using-custom-symbols-in-cup/
 ***********/
 	public static void main(String args[]) throws Exception {
@@ -69,6 +69,9 @@ terminal OVER;
 terminal LPAREN;
 terminal RPAREN;
 terminal SEMI;
+terminal FOR;
+//terminal LCB;
+//terminal RCB;
 
 /* Simbolos No Terminales */
 non terminal program;
@@ -83,6 +86,9 @@ non terminal NodoBase exp;
 non terminal NodoBase simple_exp;
 non terminal NodoBase term;
 non terminal NodoBase factor;
+
+/* No terminales ciclo for */
+non terminal NodoBase for_stmt;
 
 /* Precedencia de operadores */
 precedence left PLUS;
@@ -128,7 +134,10 @@ stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a");
             | write_stmt:sesc	{: if(debug) System.out.println("\t regla 3e"); 
 					RESULT=sesc;
 					:}
-            | error	{: if(debug) System.out.println("\t regla 3f"); 
+			| for_stmt: sfor {: if(debug) System.out.println("\t regla 3f");
+					RESULT=sfor;
+					:}
+            | error	{: if(debug) System.out.println("\t regla 3g"); 
 				System.out.println("Ocurrio error en cup # 0004");
 				RESULT=null;
 				:}
@@ -236,3 +245,7 @@ factor      ::= LPAREN exp:ex RPAREN	{: if(debug) System.out.println("\t regla 1
 				RESULT=null;
 				:}
 		;
+for_stmt ::=  FOR exp:prueba LPAREN stmt_seq:cuerpo RPAREN {: if(debug) System.out.println("\t regla for");
+                            RESULT = new  NodoFor(cuerpo, prueba);
+                            :}
+        ;
