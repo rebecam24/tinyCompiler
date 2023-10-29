@@ -1,4 +1,4 @@
-read x; 
+read x;
 if 0 and x then
   write 100;
 else
