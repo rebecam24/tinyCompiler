@@ -745,7 +745,7 @@ BORRAR SI NO SE NECESITA
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
             zzDoEOF();
-          {     return sf.newSymbol("EOF",sym.EOF);
+          {     return sf.newSymbol("EOF", sym.EOF);
  }
       }
       else {
