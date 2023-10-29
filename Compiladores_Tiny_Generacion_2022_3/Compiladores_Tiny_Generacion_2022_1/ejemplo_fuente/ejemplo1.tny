@@ -1,5 +1,5 @@
 read x; 
-if 0 or x then
+if 0 and x then
   write 100;
 else
   write 200;
