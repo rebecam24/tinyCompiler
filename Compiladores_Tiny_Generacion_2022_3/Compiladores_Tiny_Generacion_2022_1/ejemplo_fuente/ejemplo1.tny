@@ -1,6 +1,6 @@
 read x;
-if 0 and x then
-  write 100;
+if x < 10 then
+  write 1;
 else
-  write 200;
+  write 2;
 end
